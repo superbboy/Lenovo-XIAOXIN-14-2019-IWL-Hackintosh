@@ -32,8 +32,8 @@
 * 电源
 
 ## 不正常工作
-* 无线网卡：更换为DW1820a（Vendor:0x14E4, Device:0x43A3, Sub Vendor:0x1028, Sub Device:0x0022)，但是目前无法正常工作
-* 触控板：设备名称为TPAD，尝试使用 [黑色小兵的10-1-OCI2C-TPXX补丁方法](https://github.com/daliansky/OC-little/tree/master/10-1-OCI2C-TPXX%E8%A1%A5%E4%B8%81%E6%96%B9%E6%B3%95)仍然无法工作
+* 无线网卡：更换为DW1820a（Vendor:0x14E4, Device:0x43A3, Sub Vendor:0x1028, Sub Device:0x0022)，参考[DW1820A/BCM94350ZAE/BCM94356ZEPA50DX插入的正确姿势](https://blog.daliansky.net/DW1820A_BCM94350ZAE-driver-inserts-the-correct-posture.html)做了调整，但是目前无法正常工作
+* 触控板：设备名称为TPAD，尝试使用[VoodooI2C触摸板驱动教程 | 望海之洲](https://www.penghubingzhou.cn/2019/01/06/VoodooI2C%20DSDT%20Edit/)和 [10-1-OCI2C-TPXX补丁方法](https://github.com/daliansky/OC-little/tree/master/10-1-OCI2C-TPXX%E8%A1%A5%E4%B8%81%E6%96%B9%E6%B3%95)仍然无法工作
 * 蓝牙：更新到[BrcmPatchRAM3](https://github.com/acidanthera/BrcmPatchRAM)，蓝牙可以正常显示，但是设备一连接就断开
 * 读卡器： 加载了[Sinetek-rtsx](https://github.com/sinetek/Sinetek-rtsx)，可以看到设备信息，但是无法使用。这个Kext在之前的T460s上是可以正常驱动读卡器的
 
