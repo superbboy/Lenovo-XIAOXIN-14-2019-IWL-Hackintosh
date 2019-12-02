@@ -16,7 +16,6 @@
 | 声卡 | Realtek ALC257 |
 | 网卡 | Dell 1820A CN-096JNT (替换原有Intel Wireless-AC 9560) |
 | 读卡器 | Realtek RTS522A |
-| 外置USB网卡 | Realtek |
 | 触控板 | GPIO INT34BB |
 
 ## 教程
@@ -27,12 +26,12 @@
 ## 正常工作
 * 核显
 * 内置显示器亮度调节，快捷键也可以使用
-* USB
+* USB端口，包括摄像头
 * 声卡
 * 电源
+* 网卡（冷启动需要先通过OC进入windows 10，然后重启再进入macos）
 
 ## 不正常工作
-* 无线网卡：更换为DW1820a（Vendor:0x14E4, Device:0x43A3, Sub Vendor:0x1028, Sub Device:0x0022)，参考[DW1820A/BCM94350ZAE/BCM94356ZEPA50DX插入的正确姿势](https://blog.daliansky.net/DW1820A_BCM94350ZAE-driver-inserts-the-correct-posture.html)做了调整，但是目前无法正常工作
 * 触控板：设备名称为TPAD，尝试使用[VoodooI2C触摸板驱动教程 | 望海之洲](https://www.penghubingzhou.cn/2019/01/06/VoodooI2C%20DSDT%20Edit/)和 [10-1-OCI2C-TPXX补丁方法](https://github.com/daliansky/OC-little/tree/master/10-1-OCI2C-TPXX%E8%A1%A5%E4%B8%81%E6%96%B9%E6%B3%95)仍然无法工作
 * 蓝牙：更新到[BrcmPatchRAM3](https://github.com/acidanthera/BrcmPatchRAM)，蓝牙可以正常显示，但是设备一连接就断开
 * 读卡器： 加载了[Sinetek-rtsx](https://github.com/sinetek/Sinetek-rtsx)，可以看到设备信息，但是无法使用。这个Kext在之前的T460s上是可以正常驱动读卡器的
@@ -86,3 +85,23 @@
                 <data>EgAAAA==</data>
             </dict>
 ```
+### USB端口定制
+USB端口和小新Air 13的差不多，唯一不同的就是摄像头是在HS06，因此直接修改USBPorts.kext/Contents/Info.plist，将原有的HS05部分内容替换为如下内容：
+```
+					<key>HS06</key>
+					<dict>
+						<key>UsbConnector</key>
+						<integer>255</integer>
+						<key>port</key>
+						<data>BgAAAA==</data>
+					</dict>
+```
+
+
+### 无线网卡
+同样更换为DW1820a，不过买的不是CN-0VW3T3，然后CN-096JNT（Vendor:0x14E4, Device:0x43A3, Sub Vendor:0x1028, Sub Device:0x0022)。这个卡属于奇葩卡，折腾好好久，目前算是基本可用，但是不完美。
+1. 目前没有屏蔽针脚
+2. 参考[DW1820A/BCM94350ZAE/BCM94356ZEPA50DX插入的正确姿势](https://blog.daliansky.net/DW1820A_BCM94350ZAE-driver-inserts-the-correct-posture.html)对OC进行配置，包括
+   * AirportBrcmFixup 2.0.4放到/EFI/OC/Kexts下面，并在OC中加载
+   * 启动参数设置brcmfx-driver=1，brcmfx-country=#a
+   * 添加PCI设备信息，模拟4353。注意小新14-2019 IWL网卡是挂在PciRoot(0x0)/Pci(0x1d,0x2)/Pci(0x0,0x0)下面
