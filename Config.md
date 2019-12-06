@@ -4,6 +4,7 @@
 
 ## Kext调整
 基于1.3.0调整了如下C/k/O下面的kext
+
 | 名称 | 操作 ｜
 | :-- | :-- |
 | AirportBrcmFixup.kext| 升级到 2.0.4 |
