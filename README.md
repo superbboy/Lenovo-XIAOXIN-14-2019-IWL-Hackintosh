@@ -22,7 +22,7 @@
 参考 [黑色小兵 Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 1.3.0版本
 * 开始用的CLOVER，后来换成OpenCore。不过由于OpenCore会修改Windows下的信息，暂时还是回到CLOVER。
 * 系统是直接从原来的T460s TimeMachine备份直接恢复（10.14.6），然后升级到10.15.1
-* 基于笔记本的情况设置做了调整，具体看[本机调整](https://github.com/superbboy/Lenovo-XIAOXIN-14-2019-IWL-Hackintosh/Config.md)
+* 基于笔记本的情况设置做了调整，具体看[本机调整](https://github.com/superbboy/Lenovo-XIAOXIN-14-2019-IWL-Hackintosh/blob/master/Config.md)
 
 ## 目前状态
 
