@@ -27,13 +27,9 @@
 					<key>Disabled</key>
 					<true/>
 					<key>Find</key>
-					<data>
-					X09TSQ==
-					</data>
+					<data>X09TSQ==</data>
 					<key>Replace</key>
-					<data>
-					WE9TSQ==
-					</data>
+					<data>WE9TSQ==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
@@ -41,13 +37,9 @@
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>
-					TElEMA==
-					</data>
+					<data>TElEMA==</data>
 					<key>Replace</key>
-					<data>
-					TElEXw==
-					</data>
+					<data>TElEXw==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
@@ -55,13 +47,9 @@
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>
-					X1ExMQ==
-					</data>
+					<data>X1ExMQ==</data>
 					<key>Replace</key>
-					<data>
-					WFExMQ==
-					</data>
+					<data>WFExMQ==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
@@ -69,13 +57,9 @@
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>
-					X1ExMg==
-					</data>
+					<data>X1ExMg==</data>
 					<key>Replace</key>
-					<data>
-					WFExMg==
-					</data>
+					<data>WFExMg==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
@@ -83,13 +67,9 @@
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>
-					R1BSVwI=
-					</data>
+					<data>R1BSVwI=</data>
 					<key>Replace</key>
-					<data>
-					WFBSVwI=
-					</data>
+					<data>WFBSVwI=</data>
 				</dict>
 			</array>
 		</dict>
@@ -104,13 +84,13 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>brcmfx-country=#a brcmfx-driver=1 -v keepsyms=1 debug=0x100</string>
+		<string>brcmfx-country=#a brcmfx-driver=2 -v keepsyms=1 debug=0x100</string>
 		<key>CustomLogo</key>
 		<string>Alternate</string>
 		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
-		<string>LastBootedVolume</string>
+		<string>macOS</string>
 		<key>NeverHibernate</key>
 		<true/>
 		<key>NoEarlyProgress</key>
@@ -132,59 +112,41 @@
 			<key>PciRoot(0x0)/Pci(0x1d,0x2)/Pci(0x0, 0x0)</key>
 			<dict>
 				<key>compatible</key>
-				<string>pci14e4,4353</string>
+				<string>pci14e4,43a3</string>
 				<key>device_type</key>
 				<string>Airport Extreme</string>
 				<key>model</key>
 				<string>DW1820A (BCM4350) 802.11ac Wireless</string>
 				<key>name</key>
 				<string>Airport</string>
+				<key>pci-aspm-default</key>
+				<integer>0</integer>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
 			<dict>
 				<key>layout-id</key>
-				<data>
-				EgAAAA==
-				</data>
+				<data>EgAAAA==</data>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
 				<key>AAPL,ig-platform-id</key>
-				<data>
-				AACbPg==
-				</data>
+				<data>AACbPg==</data>
 				<key>device-id</key>
-				<data>
-				mz4AAA==
-				</data>
+				<data>mz4AAA==</data>
 				<key>disable-external-gpu</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 				<key>framebuffer-con2-busid</key>
-				<data>
-				AgAAAA==
-				</data>
+				<data>AgAAAA==</data>
 				<key>framebuffer-con2-enable</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 				<key>framebuffer-con2-type</key>
-				<data>
-				AAgAAA==
-				</data>
+				<data>AAgAAA==</data>
 				<key>framebuffer-fbmem</key>
-				<data>
-				AACQAA==
-				</data>
+				<data>AACQAA==</data>
 				<key>framebuffer-patch-enable</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 				<key>framebuffer-stolenmem</key>
-				<data>
-				AAAwAQ==
-				</data>
+				<data>AAAwAQ==</data>
 			</dict>
 		</dict>
 		<key>UseIntelHDMI</key>

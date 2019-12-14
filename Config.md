@@ -79,8 +79,23 @@ USB端口和小新Air 13的差不多，唯一不同的就是摄像头是在HS06�
 1. 目前没有屏蔽针脚
 2. 参考[DW1820A/BCM94350ZAE/BCM94356ZEPA50DX插入的正确姿势](https://blog.daliansky.net/DW1820A_BCM94350ZAE-driver-inserts-the-correct-posture.html)对OC进行配置，包括
    * 更新AirportBrcmFixup到2.0.4放到/EFI/CLOVER/kexts/Other下面
-   * 启动参数设置brcmfx-driver=1，brcmfx-country=#a
-   * 添加PCI设备信息，模拟4353。注意小新14-2019 IWL网卡是挂在PciRoot(0x0)/Pci(0x1d,0x2)/Pci(0x0,0x0)下面
+   * 启动参数设置brcmfx-driver=2，brcmfx-country=#a
+   * 添加PCI设备信息，使用本来的43a3。注意小新14-2019 IWL网卡是挂在PciRoot(0x0)/Pci(0x1d,0x2)/Pci(0x0,0x0)下面。**重点是 pci-aspm-default 这个参数，之前使用43a3总是启动卡住，要改成4353（模拟4360）才能启动。**
+
+```
+            <dict>
+                <key>compatible</key>
+                <string>pci14e4,43a3</string>
+                <key>device_type</key>
+                <string>Airport Extreme</string>
+                <key>model</key>
+                <string>DW1820A (BCM4350) 802.11ac Wireless</string>
+                <key>name</key>
+                <string>Airport</string>
+                <key>pci-aspm-default</key>
+                <integer>0</integer>
+            </dict>
+```
 
 ### 蓝牙
 蓝牙现有配置直接可以使用Air Drop，满足基本需求。研究了一段时间，也没有解决，因此没有调整
