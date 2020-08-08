@@ -1,16 +1,13 @@
 # 联想小新14-2019 IWL配置调整
 
-配置调整基于[黑色小兵 Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 1.3.0版本进行
+配置调整基于[黑色小兵 Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 2.0.0版本进行
 
 ## Kext调整
-基于1.3.0调整了如下C/k/O下面的kext
+基于2.0.0调整了如下C/k/O下面的kext
 
 | 名称 | 操作 |
 | :-- | :-- |
-| AirportBrcmFixup.kext| 升级到 2.0.4 |
 | USBPorts.kext | 调整端口配置 |
-| WhateverGreen.kext | 升级到1.3.4 |
-| Sinetek-rtsx.kext | 新增，支持读卡器 |
 
 
 ## 配置调整
@@ -52,7 +49,7 @@
 ```
 
 ### 声卡
-声卡型号和小新Air 13的不一样，HackinTool显示为LayoutID有11和18两种。经过测试，11没有内置麦克风，18有，因此最后选择了18。声卡的补丁信息如下：
+声卡型号和小新Air 13的不一样，HackinTool显示为LayoutID有11和18两种。经过测试，18对家里的iPhone耳机兼容性更好（11需要按住通话才能听到人声），因此最后选择了18。声卡的补丁信息如下：
 
 ```
             <key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
@@ -78,7 +75,6 @@ USB端口和小新Air 13的差不多，唯一不同的就是摄像头是在HS06�
 同样更换为DW1820a，不过买的不是CN-0VW3T3，然后CN-096JNT（Vendor:0x14E4, Device:0x43A3, Sub Vendor:0x1028, Sub Device:0x0022)。这个卡属于奇葩卡，折腾好好久，目前算是基本可用，但是不完美。
 1. 目前没有屏蔽针脚
 2. 参考[DW1820A/BCM94350ZAE/BCM94356ZEPA50DX插入的正确姿势](https://blog.daliansky.net/DW1820A_BCM94350ZAE-driver-inserts-the-correct-posture.html)对OC进行配置，包括
-   * 更新AirportBrcmFixup到2.0.4放到/EFI/CLOVER/kexts/Other下面
    * 启动参数设置brcmfx-driver=2，brcmfx-country=#a
    * 添加PCI设备信息，使用本来的43a3。注意小新14-2019 IWL网卡是挂在PciRoot(0x0)/Pci(0x1d,0x2)/Pci(0x0,0x0)下面。**重点是 pci-aspm-default 这个参数，之前使用43a3总是启动卡住，需要改成brcmfx-driver=1、compatible设置为4353才能正常驱动。**
 
@@ -98,9 +94,13 @@ USB端口和小新Air 13的差不多，唯一不同的就是摄像头是在HS06�
 ```
 
 ### 蓝牙
-蓝牙现有配置直接可以使用Air Drop，满足基本需求。研究了一段时间，也没有解决，因此没有调整
+蓝牙现有配置直接可以使用Air Drop，满足基本需求。
 
 ### 触控板
+尝试了最新使用了黑色小兵提供最新版本中的触控板补丁，仍然无法驱动本机的触控板。因此还是根据之前研究的结果生成OC触控板补丁
+
+下面是原来的CLOVER的研究过程（2019-12）
+
 设备名称为TPAD（MSFT0001)，开始尝试使用[VoodooI2C触摸板驱动教程 | 望海之洲](https://www.penghubingzhou.cn/2019/01/06/VoodooI2C%20DSDT%20Edit/)和 [10-1-OCI2C-TPXX补丁方法](https://github.com/daliansky/OC-little/tree/master/10-1-OCI2C-TPXX%E8%A1%A5%E4%B8%81%E6%96%B9%E6%B3%95)，一直无法工作。
 
 尝试下载代码编译，但是遇到一个比较坑的问题，总是无法从系统日志 (`log show --debug --last boot |grep Voodoo`)里面获取足够多的信息，只能看到VoodooGPIO部分信息，但是从verbose模式却是又可以看到信息。也尝试手工加载，但是由于对于代码不熟悉，总是找不到问题所在。
@@ -145,5 +145,3 @@ VoodooGPIOXXX:: pin 49 cannot be used as IRQ
 #### 收尾工作
 将VoodooI2C相关kext从/L/E放回 C/k/O，合并I2C补丁，同样顺利驱动。
 
-### 读卡器
-加载了[Sinetek-rtsx](https://github.com/sinetek/Sinetek-rtsx)，可以看到设备信息，但是无法使用。这个Kext在之前的T460s上是可以正常驱动读卡器的，再研究
