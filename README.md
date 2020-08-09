@@ -20,9 +20,9 @@
 
 ## 教程
 由于之前的版本在用了大半年后出现各种问题，AppStore不能更新，突然系统卡死等等，因此萌发了重做系统的想法。
-本次参考 [黑色小兵 Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 2.0.0版本
+本次参考 [Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 2.0.0版本
 * 由于AppStore无法访问，使用[【Len's DMG】macOS Catalina 10.15.6 19G73 With Clover 5119 and OC 0.6.0镜像](http://bbs.pcbeta.com/viewthread-1864197-1-1.html)镜像，并制作启动盘
-* 使用OC引导，没有使用镜像的OC0.6.0，整个OC部分都是直接用[黑色小兵 Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 的0.5.9版本，但是基于本身的情况做了调整，具体看[本机调整](https://github.com/superbboy/Lenovo-XIAOXIN-14-2019-IWL-Hackintosh/blob/master/Config.md)
+* 使用OC引导，没有使用镜像的OC0.6.0，整个OC部分都是直接用[Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 的0.5.9版本，但是基于本身的情况做了调整，具体看[本机调整](https://github.com/superbboy/Lenovo-XIAOXIN-14-2019-IWL-Hackintosh/blob/master/Config.md)
 * 由于是双系统，安装系统之前，先解决了Windows10的激活问题。参考[关于OpenCore引导双系统的一些总结和讨论](http://bbs.pcbeta.com/viewthread-1830968-1-1.html)
 * 系统重新安装后，复用之前版本MLB/ROM/SystemSerialNumber
 
@@ -46,5 +46,7 @@
 
 2019-12-14: 优化无线网卡配置，不在模拟AirportBrcm4360，而是直接用AirportBrcmNIC驱动，冷启动也不再需要先进windows
 
-2020-08-07: 替换为OC（PlatformInfo部分的信息处理了一下）
+2020-08-03: 参考[Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 2.0.0版本替换为OC 0.5.9（PlatformInfo部分的信息处理了一下）
+
+2020-08-09: 参考[Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 2.1.0版本升级到OC 0.6.0
 

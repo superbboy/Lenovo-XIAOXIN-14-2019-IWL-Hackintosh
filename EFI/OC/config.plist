@@ -40,14 +40,6 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>I2CX</string>
-				<key>Enabled</key>
-				<false/>
-				<key>Path</key>
-				<string>SSDT-I2CX.aml</string>
-			</dict>						
-			<dict>
-				<key>Comment</key>
 				<string>I2CxConf</string>
 				<key>Enabled</key>
 				<true/>
@@ -348,8 +340,6 @@
 				<string>DW1820A (BCM4350) 802.11ac Wireless</string>
 				<key>name</key>
 				<string>Airport</string>
-				<key>pci-aspm-default</key>
-				<integer>0</integer>
 			</dict>			
 			<key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
 			<dict>

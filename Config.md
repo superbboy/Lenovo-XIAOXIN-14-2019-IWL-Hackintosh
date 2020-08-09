@@ -1,6 +1,6 @@
 # 联想小新14-2019 IWL配置调整
 
-配置调整基于[黑色小兵 Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 2.0.0版本进行
+配置调整基于[Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 2.0.0版本进行
 
 ## Kext调整
 基于2.0.0调整了如下C/k/O下面的kext
@@ -12,7 +12,7 @@
 
 ## 配置调整
 ### HDMI接口外接显示器
-按照黑色小兵的提供的配置，外接显示器没有反应，用HackinTool检查不到设备连接信息。
+按照[Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 提供的配置，外接显示器没有反应，用HackinTool检查不到设备连接信息。
 
 由于笔记本只有一个HDMI接口，最后参考[教程：利用Hackintool打开第8代核显HDMI/DVI输出的正确姿势](https://blog.daliansky.net/Tutorial-Using-Hackintool-to-open-the-correct-pose-of-the-8th-generation-core-display-HDMI-or-DVI-output.html) 收尾部分，逐步尝试修改总线ID和类型信息，得到下面配置可以点亮外接显示器:
 
@@ -72,11 +72,13 @@ USB端口和小新Air 13的差不多，唯一不同的就是摄像头是在HS06�
 
 
 ### 无线网卡
+AirportBrcmFixup.kext升级到2.0.8之后，pci-aspm-default的问题解决了，可以删除了
+
 同样更换为DW1820a，不过买的不是CN-0VW3T3，然后CN-096JNT（Vendor:0x14E4, Device:0x43A3, Sub Vendor:0x1028, Sub Device:0x0022)。这个卡属于奇葩卡，折腾好好久，目前算是基本可用，但是不完美。
 1. 目前没有屏蔽针脚
 2. 参考[DW1820A/BCM94350ZAE/BCM94356ZEPA50DX插入的正确姿势](https://blog.daliansky.net/DW1820A_BCM94350ZAE-driver-inserts-the-correct-posture.html)对OC进行配置，包括
    * 启动参数设置brcmfx-driver=2，brcmfx-country=#a
-   * 添加PCI设备信息，使用本来的43a3。注意小新14-2019 IWL网卡是挂在PciRoot(0x0)/Pci(0x1d,0x2)/Pci(0x0,0x0)下面。**重点是 pci-aspm-default 这个参数，之前使用43a3总是启动卡住，需要改成brcmfx-driver=1、compatible设置为4353才能正常驱动。**
+   * 添加PCI设备信息，使用本来的43a3。注意小新14-2019 IWL网卡是挂在PciRoot(0x0)/Pci(0x1d,0x2)/Pci(0x0,0x0)下面。<del>重点是 pci-aspm-default 这个参数，之前使用43a3总是启动卡住，需要改成brcmfx-driver=1、compatible设置为4353才能正常驱动。</del>
 
 ```
             <dict>
@@ -88,8 +90,6 @@ USB端口和小新Air 13的差不多，唯一不同的就是摄像头是在HS06�
                 <string>DW1820A (BCM4350) 802.11ac Wireless</string>
                 <key>name</key>
                 <string>Airport</string>
-                <key>pci-aspm-default</key>
-                <integer>0</integer>
             </dict>
 ```
 
@@ -97,7 +97,7 @@ USB端口和小新Air 13的差不多，唯一不同的就是摄像头是在HS06�
 蓝牙现有配置直接可以使用Air Drop，满足基本需求。
 
 ### 触控板
-尝试了最新使用了黑色小兵提供最新版本中的触控板补丁，仍然无法驱动本机的触控板。因此还是根据之前研究的结果生成OC触控板补丁
+尝试了最新使用了[Lenovo Air 13 IWL Hackintosh](https://github.com/daliansky/Lenovo-Air13-IWL-Hackintosh) 提供最新版本中的触控板补丁，仍然无法驱动本机的触控板。因此还是根据之前研究的结果生成OC触控板补丁。不过和之前的不同的就是，这次引入了[20-I2C专用部件](https://github.com/daliansky/OC-little/tree/master/20-I2C%E4%B8%93%E7%94%A8%E9%83%A8%E4%BB%B6)中的 SSDT-I2CxConf.dsl，不过没有使用改名的方式
 
 下面是原来的CLOVER的研究过程（2019-12）
 
